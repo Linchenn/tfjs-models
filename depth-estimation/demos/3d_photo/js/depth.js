@@ -156,6 +156,7 @@ function predict(isMeasure = false) {
   }
 
   tf.env().set('WEBGL_EXP_CONV', config.applyOptimization);
+  tf.env().set('WEBGL_OPTIMIZATION_2023', config.applyOptimization);
 
   capturer = null;
   capturerInitialTheta = null;
@@ -231,7 +232,6 @@ function predict(isMeasure = false) {
       const end = Date.now();
       const time = end - start;
       totalTimeMs += time;
-      console.log(time);
 
       setTimeout(() => {
         updateDepthCallback();
@@ -242,6 +242,7 @@ function predict(isMeasure = false) {
     await getPortraitDepth();
 
     if (isMeasure) {
+      totalTimeMs = 0;
       for (let run = 0; run < config.numRuns; run++) {
         await getPortraitDepth();
       }
@@ -252,7 +253,6 @@ function predict(isMeasure = false) {
     }
     predictButton.textContent = 'Measure Latency';
     predictButton.disabled = false;
-    console.log(tf.env().getBool('WEBGL_EXP_CONV'));
   }, 0);
 }
 
