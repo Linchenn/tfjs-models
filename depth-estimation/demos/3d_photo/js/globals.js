@@ -32,6 +32,8 @@ var config = {
   backgroundScale: 1.0,
   backgroundDepth: -2.7,
   backgroundColor: '#050505',
+  applyOptimization: true,
+  numRuns: 5
 };
 var capturer;
 var capturerInitialTheta;
